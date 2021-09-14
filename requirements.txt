@@ -1,0 +1,6 @@
+# TODO: Check and add more dependencies
+tensorflow==2.6.0
+numpy==1.19.5
+typing-extensions==3.7.4.3
+tensorflow-hub==0.12.0
+tensorflow-text==2.6.0
