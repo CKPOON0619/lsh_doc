@@ -34,16 +34,17 @@ class FastLSH:
 
     def add_items(self, inp_vector, itemIds):
         hashes_array = self.generate_hashes(inp_vector)
+        casted_itemIds = np.array(itemIds).astype(str)
         for table_idx, hashes in enumerate(hashes_array):
             self.hash_tables[table_idx]["hash"].update(
-                dict(zip(itemIds, hashes)))
+                dict(zip(casted_itemIds, hashes)))
             hash_bucket = self.hash_tables[table_idx]["hash_bucket"]
             for idx, hash in enumerate(hashes):
                 bucket = hash_bucket.get(hash, None)
                 if bucket is None:
-                    hash_bucket[hash] = {itemIds[idx]: True}
+                    hash_bucket[hash] = {casted_itemIds[idx]: True}
                 else:
-                    bucket.update({itemIds[idx]: True})
+                    bucket.update({casted_itemIds[idx]: True})
 
     def get_items(self, inp_vector):
         hashes_array = self.generate_hashes(inp_vector)
@@ -66,11 +67,14 @@ class FastLSH:
 
     def save_json(self, filePath):
         with open(self.dir + filePath + ".json", 'w') as outfile:
-            json.dump(self.hash_tables, outfile)
+            json.dump({"hash_tables": self.hash_tables,
+                      "projections": self.projections.tolist()}, outfile)
 
     def load_json(self, filePath):
         with open(self.dir + filePath + ".json", 'r') as outfile:
-            self.hash_tables = json.load(outfile)
+            data = json.load(outfile)
+            self.hash_tables = data["hash_tables"]
+            self.projections = np.array(data["projections"])
 
     def __setitem__(self, input_val, itemId):
         input_vec = input_val
