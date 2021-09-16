@@ -1,12 +1,22 @@
+'''
+Tensor implementation for lsh
+'''
+import json as json
 import numpy as np
 import tensorflow as tf
-import json as json
-
-# TODO: implement typing
 
 
 def create_hashes(hashes):
     return tf.strings.reduce_join(hashes, axis=-1)
+
+
+def create_LSH_dict(types, contents, n_tables, hash_dim, embedding_dim):
+    lsh_dict = dict()
+    for t in types:
+        lsh_dict[t] = dict()
+        for c in contents:
+            lsh_dict[t][c] = FastLSH(n_tables, hash_dim, embedding_dim)
+    return lsh_dict
 
 
 class FastLSH:
@@ -39,10 +49,10 @@ class FastLSH:
             self.hash_tables[table_idx]["hash"].update(
                 dict(zip(casted_itemIds, hashes)))
             hash_bucket = self.hash_tables[table_idx]["hash_bucket"]
-            for idx, hash in enumerate(hashes):
-                bucket = hash_bucket.get(hash, None)
+            for idx, hash_code in enumerate(hashes):
+                bucket = hash_bucket.get(hash_code, None)
                 if bucket is None:
-                    hash_bucket[hash] = {casted_itemIds[idx]: True}
+                    hash_bucket[hash_code] = {casted_itemIds[idx]: True}
                 else:
                     bucket.update({casted_itemIds[idx]: True})
 
@@ -60,9 +70,9 @@ class FastLSH:
     def remove_items(self, itemIds):
         for table in self.hash_tables:
             for itemId in itemIds:
-                hash = table["hash"].get(itemId, None)
-                if hash is not None:
-                    table["hash_bucket"][hash].pop(itemId)
+                hash_code = table["hash"].get(itemId, None)
+                if hash_code is not None:
+                    table["hash_bucket"][hash_code].pop(itemId)
                     table["hash"].pop(itemId)
 
     def save_json(self, filePath):
