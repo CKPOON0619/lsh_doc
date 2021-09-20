@@ -42,10 +42,10 @@ class TestLSH(unittest.TestCase):
         '''
         Test saving and loading results as json
         '''
-        self.lsh.save_json("contentQuery/tests/test_save")
+        self.lsh.save_json("tests/test_save")
         new_lsh = LSH(4, 10, 10)
-        new_lsh.load_json("contentQuery/tests/test_save")
-        os.remove("contentQuery/tests/test_save.json")
+        new_lsh.load_json("tests/test_save")
+        os.remove("tests/test_save.json")
         self.assertEqual(new_lsh[self.data[0]], self.lsh[self.data[0]])
 
     def test_lsh_dict(self):
