@@ -1,11 +1,19 @@
 {
-    "python.linting.pylintEnabled": true,
-    "python.linting.pycodestyleEnabled": true,
-    "python.linting.enabled": true,
-    "python.formatting.provider": "autopep8",
-    "editor.formatOnSave": true,
-    "python.linting.pycodestyleArgs": [
-        "--ignore=E501, E402",
-    ],
-    "python.defaultInterpreterPath": "~/anaconda3/python.exe"
+	"python.linting.pylintEnabled": true,
+	"python.linting.pycodestyleEnabled": true,
+	"python.linting.enabled": true,
+	"python.formatting.provider": "autopep8",
+	"editor.formatOnSave": true,
+	"python.linting.pycodestyleArgs": [
+		"--ignore=E501, E402, line-too-long",
+	],
+	"python.linting.pylintArgs": [
+		"--extension-pkg-whitelist=pydantic"
+	],
+	"python.defaultInterpreterPath": "~/anaconda3/python.exe",
+	"python.linting.ignorePatterns": [
+		"**contentQuery/tests/context.py**",
+	],
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false
 }
