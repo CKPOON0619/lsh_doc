@@ -1,6 +1,9 @@
 '''
 Embeddings model
 '''
+# pylint: disable=unused-import
+# `tensorflow_text` is required for tensorflow hub model pre-processing.
+import tensorflow_text
 import tensorflow_hub as hub
 # The 16-language multilingual module is the default but feel free
 # to pick others from the list and compare the results.
