@@ -13,7 +13,5 @@
 	"python.defaultInterpreterPath": "~/anaconda3/python.exe",
 	"python.linting.ignorePatterns": [
 		"**contentQuery/tests/context.py**",
-	],
-	"editor.detectIndentation": false,
-	"editor.insertSpaces": false
+	]
 }

@@ -1,14 +1,15 @@
 '''
-Unit tests
+Unit tests lsh implementation
 '''
 import unittest
 import os
-from .context import server_app
 import numpy as np
+from .context import lsh, embeddings
 
 
-LSH = server_app.lsh.FastLSH
-create_LSH_dict = server_app.lsh.create_LSH_dict
+LSH = lsh.FastLSH
+create_LSH_dict = lsh.create_LSH_dict
+USE_embed = embeddings.USE_embed
 
 
 class TestLSH(unittest.TestCase):
@@ -17,7 +18,7 @@ class TestLSH(unittest.TestCase):
     Tests for lsh implementation
     '''
 
-    def setUp(self) -> None:
+    def setUp(self):
         np.random.seed(0)
         hasher = LSH(4, 10, 10)
         self.data = np.random.randn(100, 10)
@@ -38,7 +39,7 @@ class TestLSH(unittest.TestCase):
         self.lsh.remove_items(['0', '3'])
         self.assertEqual(self.lsh[self.data[0]], ['25'])
 
-    def test_saveLoad(self):
+    def test_save_load(self):
         '''
         Test saving and loading results as json
         '''

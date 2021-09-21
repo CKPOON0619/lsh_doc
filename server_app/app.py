@@ -36,7 +36,7 @@ class ItemQuery(BaseModel):
 
 class TableQuery(BaseModel):
     '''
-    Type for GET query to fetch table    
+    Type for GET query to fetch table 
     '''
     type: str
     content: Optional[str] = None
