@@ -8,7 +8,7 @@ from .context import lsh, embeddings
 
 
 LSH = lsh.FastLSH
-create_LSH_dict = lsh.create_LSH_dict
+create_lsh_dict = lsh.create_lsh_dict
 USE_embed = embeddings.USE_embed
 
 
@@ -51,11 +51,11 @@ class TestLSH(unittest.TestCase):
 
     def test_lsh_dict(self):
         '''
-        Test create_LSH_dict that creates lsh instances lookup
+        Test create_lsh_dict that creates lsh instances lookup
         '''
         data_types = ['a', 'b']
         contents = ['x', 'y']
-        lsh_dict = create_LSH_dict(data_types, contents, 3, 2, 4)
+        lsh_dict = create_lsh_dict(data_types, contents, 3, 2, 4)
         for data_type in data_types:
             for content in contents:
                 self.assertTrue(isinstance(
