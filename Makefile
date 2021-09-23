@@ -3,3 +3,6 @@ setup: requirements.txt
 
 test:
 	python -m unittest
+
+demo:
+	python -m demo

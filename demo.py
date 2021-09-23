@@ -1,10 +1,10 @@
 '''
- main app
+ Demo app with ngrok
 '''
-from server_app import app
 from pyngrok import ngrok
 import uvicorn
 import nest_asyncio
+from server_app import app
 
 
 def main():

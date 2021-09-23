@@ -64,7 +64,7 @@ class FastLSH:
                 raise Exception(
                     "Projections shape not matching hash size and input dimension provided.")
 
-    def generate_hashes(self, inp_vector: Input_Vector) -> List(str):
+    def generate_hashes(self, inp_vector: Input_Vector) -> List[str]:
         '''
         Generate hashes with self projections for the input vector
         '''
