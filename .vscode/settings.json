@@ -8,7 +8,8 @@
 		"--ignore=E501, E402, line-too-long",
 	],
 	"python.linting.pylintArgs": [
-		"--extension-pkg-whitelist=pydantic"
+		"--extension-pkg-whitelist=pydantic",
+		"--load-plugins=pylint_django",
 	],
 	"python.defaultInterpreterPath": "~/anaconda3/python.exe",
 	"python.linting.ignorePatterns": [

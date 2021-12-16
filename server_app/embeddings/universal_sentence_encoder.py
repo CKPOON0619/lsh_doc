@@ -10,3 +10,4 @@ import tensorflow_hub as hub
 # @param ['https://tfhub.dev/google/universal-sentence-encoder-multilingual/3', 'https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3']
 MODULE_URL = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3'
 USE_embed = hub.load(MODULE_URL)
+USE = {"encode": USE_embed, "embedding_dim": 512}

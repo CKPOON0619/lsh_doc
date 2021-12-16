@@ -4,8 +4,8 @@ Server app with fast api
 from typing import Union, Optional, List, TypedDict
 from pydantic import BaseModel
 from fastapi import FastAPI
-from .embeddings import USE_embed
-from .lsh import create_lsh_dict, HashTable
+from ..embeddings import USE_embed
+from tensor_lsh import create_lsh_dict, HashTable
 
 TYPES = ["dimension", "temporal", "measure", "boolean"]
 CONTENTS = ["name", "description"]
